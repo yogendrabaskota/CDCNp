@@ -1,31 +1,42 @@
 import React, { useState } from "react";
+import { type ClassType, type SubjectType } from "../../types/classTypes";
 
-const LandingPage = () => {
-  const [showClassDropdown, setShowClassDropdown] = useState(false);
-  const [showSubjectDropdown, setShowSubjectDropdown] = useState(false);
-  const [selectedClass, setSelectedClass] = useState("");
-  const [selectedSubject, setSelectedSubject] = useState("");
+const Home = () => {
+  const [showClassDropdown, setShowClassDropdown] = useState<boolean>(false);
+  const [showSubjectDropdown, setShowSubjectDropdown] = useState<boolean>(false);
+  const [selectedClass, setSelectedClass] = useState<ClassType | "">("");
+  const [selectedSubject, setSelectedSubject] = useState<SubjectType | "">("");
 
-  // Sample data - replace with your actual class and subject data
-  const classes = ["Class 1", "Class 2", "Class 3", "Class 4", "Class 5"];
-  const subjects = ["Math", "Science", "English", "History", "Art"];
 
-  const toggleClassDropdown = () => {
+  
+  // Class data from Class 1 to Class 10
+  const classes: ClassType[] = [
+    "Class 1", "Class 2", "Class 3", "Class 4", "Class 5", 
+    "Class 6", "Class 7", "Class 8", "Class 9", "Class 10"
+  ];
+
+  // Subject data
+  const subjects: SubjectType[] = [
+    "Math", "Science", "English", "History", "Art",
+    "Geography", "Physics", "Chemistry", "Biology", "Computer Science"
+  ];
+
+  const toggleClassDropdown = (): void => {
     setShowClassDropdown(!showClassDropdown);
     setShowSubjectDropdown(false);
   };
 
-  const toggleSubjectDropdown = () => {
+  const toggleSubjectDropdown = (): void => {
     setShowSubjectDropdown(!showSubjectDropdown);
     setShowClassDropdown(false);
   };
 
-  const handleClassSelect = (classItem) => {
+  const handleClassSelect = (classItem: ClassType): void => {
     setSelectedClass(classItem);
     setShowClassDropdown(false);
   };
 
-  const handleSubjectSelect = (subject) => {
+  const handleSubjectSelect = (subject: SubjectType): void => {
     setSelectedSubject(subject);
     setShowSubjectDropdown(false);
   };
@@ -140,5 +151,4 @@ const LandingPage = () => {
   );
 };
 
-export default LandingPage
-
+export default Home;
