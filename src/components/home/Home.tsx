@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { type ClassType, type SubjectType } from "../../types/classTypes";
 
 const Home = () => {
