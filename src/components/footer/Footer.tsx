@@ -1,4 +1,4 @@
-
+import { Link } from "react-router-dom";
 
 const Footer = () => {
   return (
@@ -21,15 +21,16 @@ const Footer = () => {
           {/* About */}
           <div>
             <h2 className="text-2xl font-bold text-pink-600 mb-4">
-              Brand Name Or Logo
+              Education Hub
             </h2>
             <p className="mb-4 leading-relaxed opacity-90">
-              Your premier destination for creative expression and professional
-              production in the heart of Lucknow. We provide fully-equipped
-              spaces for artists, creators, and businesses.
+              Destination for All the books and Educational Resources provided
+              by the Curriculum Development Center (CDC) Nepal and the Ministry
+              of Education, Nepal. We aim to provide a comprehensive platform
+              for students to access quality educational materials.
             </p>
             {/* Social Links */}
-            <div className="flex space-x-3">
+            {/* <div className="flex space-x-3">
               <a
                 href="#"
                 className="w-10 h-10 bg-white bg-opacity-10 flex items-center justify-center rounded-full text-white transition-transform hover:-translate-y-1 hover:bg-pink-600"
@@ -54,7 +55,7 @@ const Footer = () => {
               >
                 <i className="fab fa-youtube" />
               </a>
-            </div>
+            </div> */}
           </div>
           {/* Quick Links */}
           <div>
@@ -63,22 +64,22 @@ const Footer = () => {
             </h3>
             <ul className="space-y-3">
               <li>
-                <a
-                  href="#"
+                <Link
+                  to="/"
                   className="flex items-center gap-2 opacity-90 hover:opacity-100 hover:translate-x-1 transition"
                 >
                   <i className="fas fa-chevron-right text-pink-600" /> Home
-                </a>
+                </Link>
               </li>
               <li>
-                <a
-                  href="#"
+                <Link
+                  to="/about"
                   className="flex items-center gap-2 opacity-90 hover:opacity-100 hover:translate-x-1 transition"
                 >
                   <i className="fas fa-chevron-right text-pink-600" /> About Us
-                </a>
+                </Link>
               </li>
-              <li>
+              {/*<li>
                 <a
                   href="#"
                   className="flex items-center gap-2 opacity-90 hover:opacity-100 hover:translate-x-1 transition"
@@ -101,7 +102,7 @@ const Footer = () => {
                 >
                   <i className="fas fa-chevron-right text-pink-600" /> Gallery
                 </a>
-              </li>
+              </li> */}
             </ul>
           </div>
           {/* Our Services */}
@@ -111,33 +112,33 @@ const Footer = () => {
             </h3>
             <ul className="space-y-3">
               <li>
-                <a
-                  href="#"
+                <Link
+                  to="/"
                   className="flex items-center gap-2 opacity-90 hover:opacity-100 hover:translate-x-1 transition"
                 >
-                  <i className="fas fa-chevron-right text-pink-600" /> Recording
-                  Studio
-                </a>
+                  <i className="fas fa-chevron-right text-pink-600" />
+                  All Curriculum books and Educational Resources
+                </Link>
               </li>
               <li>
-                <a
-                  href="#"
+                <Link
+                  to="/"
                   className="flex items-center gap-2 opacity-90 hover:opacity-100 hover:translate-x-1 transition"
                 >
-                  <i className="fas fa-chevron-right text-pink-600" /> Theatre
-                  Room
-                </a>
+                  <i className="fas fa-chevron-right text-pink-600" />
+                  Online Learning Platform
+                </Link>
               </li>
               <li>
-                <a
-                  href="#"
+                <Link
+                  to="/"
                   className="flex items-center gap-2 opacity-90 hover:opacity-100 hover:translate-x-1 transition"
                 >
-                  <i className="fas fa-chevron-right text-pink-600" /> Workshop
-                  Space
-                </a>
+                  <i className="fas fa-chevron-right text-pink-600" />
+                  Educational News and Updates
+                </Link>
               </li>
-              <li>
+              {/* <li>
                 <a
                   href="#"
                   className="flex items-center gap-2 opacity-90 hover:opacity-100 hover:translate-x-1 transition"
@@ -154,7 +155,7 @@ const Footer = () => {
                   <i className="fas fa-chevron-right text-pink-600" /> Event
                   Hosting
                 </a>
-              </li>
+              </li> */}
             </ul>
           </div>
           {/* Contact Us */}
@@ -165,16 +166,16 @@ const Footer = () => {
             <ul className="space-y-4 mb-6">
               <li className="flex items-start gap-4">
                 <i className="fas fa-map-marker-alt text-pink-600 mt-1" />
-                <div>India</div>
+                <div>Nepal</div>
               </li>
               <li className="flex items-start gap-4">
                 <i className="fas fa-phone-alt text-pink-600 mt-1" />
                 <div>
                   <a
-                    href="tel:+91987654321"
+                    href="tel:+97715639122"
                     className="block hover:underline opacity-90 hover:opacity-100"
                   >
-                    +91 7307022824
+                    +977-1- 5639122
                   </a>
                 </div>
               </li>
@@ -182,10 +183,10 @@ const Footer = () => {
                 <i className="fas fa-envelope text-pink-600 mt-1" />
                 <div>
                   <a
-                    href="mailto:kuldeepprajapati2111@gmail.com"
+                    href="mailto: info@moecdc.gov.np"
                     className="block hover:underline opacity-90 hover:opacity-100"
                   >
-                    kuldeepprajapati2111@gmail.com
+                    info@moecdc.gov.np
                   </a>
                 </div>
               </li>
@@ -216,8 +217,8 @@ const Footer = () => {
         {/* Footer Bottom */}
         <div className="mt-16 pt-8 border-t border-gray-700 text-center opacity-70 text-sm">
           <p>
-            © 2024 Tab Creative Studio. All Rights Reserved. | Designed with{" "}
-            <i className="fas fa-heart text-pink-600" /> by Your Team
+            © 2025 CDC(Curriculum Development Centre). All Rights Reserved. |
+            Developed by @Sujan
           </p>
         </div>
       </footer>

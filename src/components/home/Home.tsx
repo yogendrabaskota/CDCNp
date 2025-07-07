@@ -1,42 +1,64 @@
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import { type ClassType, type SubjectType } from "../../types/classTypes";
 
 const Home = () => {
-  const [showClassDropdown, setShowClassDropdown] = useState<boolean>(false);
-  const [showSubjectDropdown, setShowSubjectDropdown] = useState<boolean>(false);
+  const [showClassDropdown, setShowClassDropdown] = useState(false);
+  const [showSubjectDropdown, setShowSubjectDropdown] = useState(false);
   const [selectedClass, setSelectedClass] = useState<ClassType | "">("");
   const [selectedSubject, setSelectedSubject] = useState<SubjectType | "">("");
 
+  const classDropdownRef = useRef<HTMLDivElement>(null);
+  const subjectDropdownRef = useRef<HTMLDivElement>(null);
 
-  
-  // Class data from Class 1 to Class 10
+
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (
+        classDropdownRef.current &&
+        !classDropdownRef.current.contains(event.target as Node)
+      ) {
+        setShowClassDropdown(false);
+      }
+      if (
+        subjectDropdownRef.current &&
+        !subjectDropdownRef.current.contains(event.target as Node)
+      ) {
+        setShowSubjectDropdown(false);
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
+
   const classes: ClassType[] = [
-    "Class 1", "Class 2", "Class 3", "Class 4", "Class 5", 
+    "Class 1", "Class 2", "Class 3", "Class 4", "Class 5",
     "Class 6", "Class 7", "Class 8", "Class 9", "Class 10"
   ];
 
-  // Subject data
   const subjects: SubjectType[] = [
     "Math", "Science", "English", "History", "Art",
     "Geography", "Physics", "Chemistry", "Biology", "Computer Science"
   ];
 
-  const toggleClassDropdown = (): void => {
+  const toggleClassDropdown = () => {
     setShowClassDropdown(!showClassDropdown);
     setShowSubjectDropdown(false);
   };
 
-  const toggleSubjectDropdown = (): void => {
+  const toggleSubjectDropdown = () => {
     setShowSubjectDropdown(!showSubjectDropdown);
     setShowClassDropdown(false);
   };
 
-  const handleClassSelect = (classItem: ClassType): void => {
+  const handleClassSelect = (classItem: ClassType) => {
     setSelectedClass(classItem);
     setShowClassDropdown(false);
   };
 
-  const handleSubjectSelect = (subject: SubjectType): void => {
+  const handleSubjectSelect = (subject: SubjectType) => {
     setSelectedSubject(subject);
     setShowSubjectDropdown(false);
   };
@@ -47,18 +69,17 @@ const Home = () => {
         <h1 className="text-3xl font-bold text-center text-gray-800 dark:text-white mb-8">
           Welcome to Education Hub
         </h1>
-        
+
         <div className="flex flex-col space-y-6 md:space-y-0 md:flex-row md:space-x-6 justify-center">
-          {/* Enter Class Button and Dropdown */}
-          <div className="relative">
+          {/* Class Dropdown */}
+          <div className="relative w-full md:w-60" ref={classDropdownRef}>
             <button
               onClick={toggleClassDropdown}
-              className="w-full md:w-48 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 flex justify-between items-center"
+              className="w-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-semibold rounded-lg text-base px-6 py-3 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 flex justify-between items-center"
             >
-              {selectedClass || "Enter Class"}
+              {selectedClass || "Select Class"}
               <svg
-                className={`w-4 h-4 ml-2 transition-transform ${showClassDropdown ? "rotate-180" : ""}`}
-                aria-hidden="true"
+                className={`w-5 h-5 ml-2 transition-transform ${showClassDropdown ? "rotate-180" : ""}`}
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
                 viewBox="0 0 14 8"
@@ -72,10 +93,10 @@ const Home = () => {
                 />
               </svg>
             </button>
-            
+
             {showClassDropdown && (
-              <div className="absolute z-10 mt-1 w-full bg-white divide-y divide-gray-100 rounded-lg shadow dark:bg-gray-700">
-                <ul className="py-2 text-sm text-gray-700 dark:text-gray-200">
+              <div className="absolute z-20 mt-1 w-full bg-white divide-y divide-gray-100 rounded-lg shadow dark:bg-gray-700 max-h-60 overflow-y-auto">
+                <ul className="py-2 text-base text-gray-700 dark:text-gray-200">
                   {classes.map((classItem, index) => (
                     <li key={index}>
                       <button
@@ -90,17 +111,16 @@ const Home = () => {
               </div>
             )}
           </div>
-          
-          {/* Enter Subject Button and Dropdown */}
-          <div className="relative">
+
+          {/* Subject Dropdown */}
+          <div className="relative w-full md:w-60" ref={subjectDropdownRef}>
             <button
               onClick={toggleSubjectDropdown}
-              className="w-full md:w-48 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 flex justify-between items-center"
+              className="w-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-semibold rounded-lg text-base px-6 py-3 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 flex justify-between items-center"
             >
-              {selectedSubject || "Enter Subject"}
+              {selectedSubject || "Select Subject"}
               <svg
-                className={`w-4 h-4 ml-2 transition-transform ${showSubjectDropdown ? "rotate-180" : ""}`}
-                aria-hidden="true"
+                className={`w-5 h-5 ml-2 transition-transform ${showSubjectDropdown ? "rotate-180" : ""}`}
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
                 viewBox="0 0 14 8"
@@ -114,10 +134,10 @@ const Home = () => {
                 />
               </svg>
             </button>
-            
+
             {showSubjectDropdown && (
-              <div className="absolute z-10 mt-1 w-full bg-white divide-y divide-gray-100 rounded-lg shadow dark:bg-gray-700">
-                <ul className="py-2 text-sm text-gray-700 dark:text-gray-200">
+              <div className="absolute z-20 mt-1 w-full bg-white divide-y divide-gray-100 rounded-lg shadow dark:bg-gray-700 max-h-60 overflow-y-auto">
+                <ul className="py-2 text-base text-gray-700 dark:text-gray-200">
                   {subjects.map((subject, index) => (
                     <li key={index}>
                       <button
@@ -133,8 +153,8 @@ const Home = () => {
             )}
           </div>
         </div>
-        
-        {/* Selected Options Display */}
+
+        {/* Selection Display */}
         {(selectedClass || selectedSubject) && (
           <div className="mt-8 p-4 bg-gray-100 dark:bg-gray-600 rounded-lg">
             <h3 className="font-semibold text-gray-800 dark:text-white mb-2">Your Selection:</h3>
@@ -146,6 +166,16 @@ const Home = () => {
             )}
           </div>
         )}
+
+        {/* Done Button */}
+        <div className="mt-8 text-center">
+          <button
+            className="w-full md:w-auto px-6 py-3 text-white bg-green-600 hover:bg-green-700 rounded-lg text-lg font-semibold transition"
+            onClick={() => alert(`Done with Class: ${selectedClass} & Subject: ${selectedSubject}`)}
+          >
+            Done
+          </button>
+        </div>
       </div>
     </div>
   );
